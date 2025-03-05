@@ -12,10 +12,8 @@ A simple and fun memory matching game built with **HTML, CSS, and JavaScript**.
 - Your **high score** is saved locally.
 
 ## 🚀 Live Demo
-[Play the Game](https://your-username.github.io/memory-matching-game/)
+[Play the Game](https://prosper-codes.github.io/-memory-matching-game/)
 
-## 📸 Screenshot
-![Memory Matching Game](screenshot.png)
 
 ## 🛠 Technologies Used
 - HTML
@@ -31,6 +29,6 @@ A simple and fun memory matching game built with **HTML, CSS, and JavaScript**.
 ## 💻 Installation
 To run the game locally:
 ```sh
-git clone https://github.com/your-username/memory-matching-game.git
+git clone  https://prosper-codes.github.io/-memory-matching-game/
 cd memory-matching-game
 open index.html
