@@ -6,7 +6,8 @@ const restartBtn = document.querySelector('.again');
 let cards = [];
 let firstCard = null;
 let secondCard = null;
-let score = 0;
+let lockBoard = false;
+let score = 100; // Start score at 100
 let highScore = localStorage.getItem('highscore') || 0;
 highScoreEl.textContent = highScore;
 
@@ -31,7 +32,7 @@ function createBoard() {
 }
 
 function flipCard() {
-    if (this.classList.contains('revealed') || firstCard && secondCard) return;
+    if (this.classList.contains('revealed') || lockBoard) return;
 
     this.textContent = this.dataset.symbol;
     this.classList.add('revealed');
@@ -45,9 +46,11 @@ function flipCard() {
 }
 
 function checkMatch() {
+    lockBoard = true;
+
     if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
         resetSelection();
-        score += 10;
+        score += 2; // Increase score for correct match
         scoreEl.textContent = score;
 
         if (document.querySelectorAll('.revealed').length === cards.length) {
@@ -59,6 +62,8 @@ function checkMatch() {
             setTimeout(() => alert('🎉 You won!'), 500);
         }
     } else {
+        score -= 2; // Decrease score for wrong match
+        scoreEl.textContent = score;
         setTimeout(() => {
             firstCard.classList.remove('revealed');
             secondCard.classList.remove('revealed');
@@ -72,11 +77,12 @@ function checkMatch() {
 function resetSelection() {
     firstCard = null;
     secondCard = null;
+    lockBoard = false;
 }
 
 // Restart Game
 restartBtn.addEventListener('click', () => {
-    score = 0;
+    score = 100; // Reset score to 100
     scoreEl.textContent = score;
     cardValues.sort(() => Math.random() - 0.5);
     createBoard();
